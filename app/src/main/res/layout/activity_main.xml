@@ -8,23 +8,32 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"/>
-
-    <fragment
-            android:id="@+id/now_playing"
-            android:name="com.example.myapplication.Nowp_laying"
+    <FrameLayout
+            android:id="@+id/fragment_holder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-    <fragment
-            android:id="@+id/top_rate"
-            android:name="com.example.myapplication.Top_rate"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+        <Button
+                android:id="@+id/Btn_play"
+                android:scaleType="fitCenter"
+                android:layout_width="210dp"
+                android:layout_height="50dp"
+                android:text="Playing now"
+                android:background="#d50000"
+        />
+        <Button
+                android:id="@+id/Btn_rate"
+                android:scaleType="fitCenter"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Top Rate"
+                android:background="#3D5AFE"
+        />
+    </LinearLayout>
+
 
 </LinearLayout>
