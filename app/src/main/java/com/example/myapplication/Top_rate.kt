@@ -20,7 +20,7 @@ class Top_rate: Fragment() {
     private lateinit var mHandler: Handler
     private lateinit var mRunnable:Runnable
 
-    var movies: ArrayList<MovieModel.Results> = ArrayList()
+    var movies: ArrayList<Movie> = ArrayList()
     lateinit var movieAdapter: MovieAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -50,7 +50,7 @@ class Top_rate: Fragment() {
                         val json = response.body()!!.string()
                         val jsObect = JSONObject(json)
                         val result = jsObect.getJSONArray("results").toString()
-                        val collectionType = object : TypeToken<Collection<MovieModel.Results>>() {}.type
+                        val collectionType = object : TypeToken<Collection<Movie>>() {}.type
                         movies = Gson().fromJson(result, collectionType)
 
                         getActivity()?.runOnUiThread(Runnable {
@@ -102,7 +102,7 @@ class Top_rate: Fragment() {
                     val json = response.body()!!.string()
                     val jsObect = JSONObject(json)
                     val result = jsObect.getJSONArray("results").toString()
-                    val collectionType = object : TypeToken<Collection<MovieModel.Results>>() {}.type
+                    val collectionType = object : TypeToken<Collection<Movie>>() {}.type
                     movies = Gson().fromJson(result, collectionType)
 
                     getActivity()?.runOnUiThread(Runnable {
@@ -120,13 +120,12 @@ class Top_rate: Fragment() {
     private val MovieItemClickListener = object : MovieItemClickListener {
         override fun onItemCLicked(position: Int) {
             Log.i("Top Rate", "Hi")
-//            val bundle = Bundle()
-//            val fragmentGet = topRateFragment()
-//            bundle.putParcelable("FILM_KEY", movies.get(position))
-//            fragmentGet.arguments = bundle
             val intent : Intent = Intent(activity, ProfileFilm::class.java)
             intent.putExtra("FILM_KEY", movies.get(position))
             startActivity(intent)
+        }
+        override fun onItemLongCLicked(position: Int) {
+            // Dialog
         }
 
     }

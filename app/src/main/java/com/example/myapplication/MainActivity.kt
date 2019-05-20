@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val fragmentAdapter = tabSlideAdapter(supportFragmentManager)
         viewpager.adapter = fragmentAdapter
-        main_tab.setupWithViewPager(viewpager)
+        tablayout.setupWithViewPager(viewpager)
 
     }
 }

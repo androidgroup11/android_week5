@@ -20,7 +20,7 @@ class Now_playing: Fragment() {
     private lateinit var mHandler: Handler
     private lateinit var mRunnable:Runnable
 
-    var movies: ArrayList<MovieModel.Results> = ArrayList()
+    var movies: ArrayList<Movie> = ArrayList()
     lateinit var movieAdapter: MovieAdapter
 
 
@@ -55,7 +55,7 @@ class Now_playing: Fragment() {
                         Log.i("JSON", json.toString())
                         val jsObect = JSONObject(json)
                         val result = jsObect.getJSONArray("results").toString()
-                        val collectionType = object : TypeToken<Collection<MovieModel.Results>>() {}.type
+                        val collectionType = object : TypeToken<Collection<Movie>>() {}.type
                         movies = Gson().fromJson(result, collectionType)
                         Log.i("PARCEL: ", movies.toString())
                         getActivity()?.runOnUiThread(Runnable {
@@ -104,7 +104,7 @@ class Now_playing: Fragment() {
                     Log.i("JSON", json.toString())
                     val jsObect = JSONObject(json)
                     val result = jsObect.getJSONArray("results").toString()
-                    val collectionType = object : TypeToken<Collection<MovieModel.Results>>() {}.type
+                    val collectionType = object : TypeToken<Collection<Movie>>() {}.type
                     movies = Gson().fromJson(result, collectionType)
                     Log.i("PARCEL: ", movies.toString())
                     getActivity()?.runOnUiThread(Runnable {
@@ -127,6 +127,9 @@ class Now_playing: Fragment() {
             intent.putExtra("FILM_KEY", movies.get(position))
             startActivity(intent)
 
+        }
+        override fun onItemLongCLicked(position: Int) {
+            // Dialog
         }
 
     }
